@@ -35,6 +35,17 @@ function App() {
       return checkIndex(index + 1);
     })
   }
+
+  //random review
+  const randomReview = () => {
+    let randomIndex = Math.floor(Math.random() * reviews.length); // 0-3
+    //check to be sure that randomIndex isnt equals current index, if so add 1 or substract doesnt matter
+    if (randomIndex === index) {
+      randomIndex += 1;
+    }
+    //set index to random but check it before with our helper func
+    setIndex(checkIndex(randomIndex));
+  }
   return (
     <main>
       <section className="container">
@@ -54,7 +65,7 @@ function App() {
             <button onClick={prevReview} className="prev-btn"><GoChevronLeft /></button>
             <button onClick={nextReview} className="next-btn"><GoChevronRight /></button>
           </div>
-          <button className="random-btn">Random review</button>
+          <button onClick={randomReview} className="random-btn">Random review</button>
         </article>
       </section>
     </main>
