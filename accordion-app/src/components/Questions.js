@@ -1,10 +1,13 @@
 import React from 'react'
+import SingleQuestion from './SingleQuestion'
 
-const Questions = () => {
+const Questions = ({ questions }) => {
     return (
-        <div>
-
-        </div>
+        <>
+            {questions.map(item => {
+                return <SingleQuestion key={item.id} {...item} />
+            })}
+        </>
     )
 }
 
