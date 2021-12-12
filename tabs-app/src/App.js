@@ -52,11 +52,16 @@ function App() {
       <div className="jobs-center">
         <div className="btn-container">
           {tabs.map((item, index) => {
+            // add active class based on current value 
+            let clsName = 'job-btn';
+            if (index === value) {
+              clsName += ' active-btn';
+            }
             return (
               <button key={item.id} onClick={() => {
                 switchTab(index);
               }}
-                className="job-btn">{item.company}
+                className={clsName}>{item.company}
               </button>
             )
           })}
