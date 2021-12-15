@@ -3,8 +3,25 @@ import data from "./data";
 import { AiFillCaretLeft, AiFillCaretRight } from 'react-icons/ai'
 
 function App() {
-  const [people, setpeople] = useState(data);
-  const [index, setindex] = useState(0)
+  const [people, setPeople] = useState(data);
+  const [index, setIndex] = useState(0);
+
+  //slider next prev logic
+  const prevSlide = () => {
+    if (index <= 0) {
+      setIndex(people.length - 1);
+    } else {
+      setIndex(index - 1);
+    }
+  }
+
+  const nextSlide = () => {
+    if (index === people.length - 1) {
+      setIndex(0);
+    } else {
+      setIndex(index + 1)
+    }
+  }
   return (
     <section className="section">
       <div className="title">
@@ -30,8 +47,8 @@ function App() {
             </article>
           )
         })}
-        <button className="prev"><AiFillCaretLeft></AiFillCaretLeft></button>
-        <button className="next"><AiFillCaretRight></AiFillCaretRight></button>
+        <button onClick={prevSlide} className="prev"><AiFillCaretLeft></AiFillCaretLeft></button>
+        <button onClick={nextSlide} className="next"><AiFillCaretRight></AiFillCaretRight></button>
       </div>
     </section>
   );
