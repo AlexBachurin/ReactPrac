@@ -13,8 +13,17 @@ function App() {
       <div className="section-center">
         {people.map((person, personIndex) => {
           const { id, image, name, title, quote } = person;
+          //position for each slide based on current index value
+          // *** SLIDER CSS LOGIC ***
+          let position = 'nextSlide';
+          if (index === personIndex) {
+            position = 'activeSlide';
+          } else if (personIndex === index - 1 || (index === 0 && personIndex === people.length - 1)) {
+            position = 'lastSlide'
+          }
+
           return (
-            <article key={id}>
+            <article className={position} key={id}>
               <img className="person-img" src={image} alt={name} />
               <p className="title">{title}</p>
               <p className="text">{quote}</p>
