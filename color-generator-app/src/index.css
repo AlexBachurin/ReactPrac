@@ -214,3 +214,12 @@ input.error {
   font-size: 0.85rem;
   margin-top: 0.5rem;
 }
+.error-msg {
+  color: red;
+  font-size: 1.3rem;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.input-err {
+  border-color: red;
+}
