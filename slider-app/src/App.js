@@ -6,6 +6,7 @@ function App() {
   const [people, setPeople] = useState(data);
   const [index, setIndex] = useState(0);
 
+
   //slider next prev logic
   const prevSlide = () => {
     if (index <= 0) {
@@ -35,7 +36,7 @@ function App() {
     return () => {
       clearTimeout(timerId);
     }
-  })
+  }, [index, people.length])
   return (
     <section className="section">
       <div className="title">
