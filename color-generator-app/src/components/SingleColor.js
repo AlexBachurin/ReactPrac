@@ -6,7 +6,7 @@ const SingleColor = ({ rgb, type, hex, weight }) => {
     return (
         //add color-light class if type of color is shade, also add bg style to component
         <article className={`color  ${type === 'shade' ? 'color-light' : null}`} style={{ backgroundColor: `rgb(${bgstyle})` }}>
-            <p className='percent-value'>{weight}</p>
+            <p className='percent-value'>{weight}%</p>
             <p className="color-value">#{hex}</p>
         </article>
     )

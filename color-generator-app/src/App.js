@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Values from 'values.js'
 import SingleColor from "./components/SingleColor";
 
 function App() {
   //state for input color
-  const [color, setColor] = useState('#f15025');
+  const [color, setColor] = useState('');
   //state for list of colors based on input from values.js
   const [colorsList, setColorsList] = useState([]);
 
@@ -25,9 +25,12 @@ function App() {
     } catch (error) {
       console.log(error)
     }
-
-
   }
+  //show default color on load
+  useEffect(() => {
+    const dataColor = new Values('#f15025');
+    setColorsList(dataColor.all(10));
+  }, [])
   return (
     <>
       <section className="container">
