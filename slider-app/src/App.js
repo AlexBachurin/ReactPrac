@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import data from "./data";
 import { AiFillCaretLeft, AiFillCaretRight } from 'react-icons/ai'
 
@@ -22,6 +22,20 @@ function App() {
       setIndex(index + 1)
     }
   }
+
+  //AUTO SLIDE LOGIC
+  useEffect(() => {
+    const timerId = setTimeout(() => {
+      if (index === people.length - 1) {
+        setIndex(0);
+      } else {
+        setIndex(index + 1)
+      }
+    }, 2000)
+    return () => {
+      clearTimeout(timerId);
+    }
+  })
   return (
     <section className="section">
       <div className="title">
