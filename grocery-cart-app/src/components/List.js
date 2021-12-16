@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { FaPencilAlt, FaTrashAlt } from 'react-icons/fa'
 const List = ({ list, deleteItem, editItem }) => {
     return (
