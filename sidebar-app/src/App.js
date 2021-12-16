@@ -1,5 +1,6 @@
 import React from "react";
 import { FaBars } from 'react-icons/fa'
+import Sidebar from "./components/Sidebar";
 
 function App() {
   return (
@@ -15,7 +16,7 @@ function App() {
           modal content
         </div>
       </div>
-
+      <Sidebar />
     </>
   );
 
