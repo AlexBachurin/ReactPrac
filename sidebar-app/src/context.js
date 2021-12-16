@@ -7,7 +7,10 @@ const AppProvider = ({ children }) => {
 
     //state for sidebar
     const [showSidebar, setShowSidebar] = useState(false);
+    //state for modal
+    const [showModal, setShowModal] = useState(false);
 
+    // SIDEBAR
     const openSidebar = () => {
         setShowSidebar(true);
     }
@@ -16,6 +19,13 @@ const AppProvider = ({ children }) => {
         setShowSidebar(false);
     }
 
+    //MODAL
+    const openModal = () => {
+        setShowModal(true);
+    }
+    const closeModal = () => {
+        setShowModal(false);
+    }
     return (
         <AppContext.Provider
             value={
@@ -23,6 +33,9 @@ const AppProvider = ({ children }) => {
                     showSidebar,
                     openSidebar,
                     closeSidebar,
+                    showModal,
+                    openModal,
+                    closeModal
                 }
 
             }>
