@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { links, social } from './data'
 import { FaBars } from 'react-icons/fa'
 function App() {
@@ -11,15 +11,25 @@ function App() {
   const showNavBar = () => {
     setShowNav(!showNav)
   }
+  //get height of links and dynamically setup height to container
+  useEffect(() => {
+    const linksHeight = linksRef.current.getBoundingClientRect().height;
+    console.log(linksHeight)
+    if (showNav) {
+      linksContainerRef.current.style.height = `${linksHeight}px`
+    } else {
+      linksContainerRef.current.style.height = `0px`
+    }
+  })
   return (
     <nav>
       <div className="nav-center">
         <div className="nav-header">
-          logo
+          <img src="https://res.cloudinary.com/dljezd6qv/image/upload/v1619820552/main-logo.png" className="logo" alt="logo" />
           <button onClick={showNavBar} className="nav-toggle"><FaBars /></button>
         </div>
-        <div className={`links-container ${showNav ? 'show-container' : null}`}>
-          <ul className="links">
+        <div ref={linksContainerRef} className={`links-container ${showNav ? 'show-container' : null}`}>
+          <ul ref={linksRef} className="links">
             {links.map(link => {
               const { id, url, text } = link;
               return (
