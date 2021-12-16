@@ -28,7 +28,10 @@ const App = () => {
       setAlert({ show: true, msg: 'item sucessfully added', type: 'success' })
     }
   }
-
+  //clear All items
+  const clearAllItems = () => {
+    setList([]);
+  }
   return (
     <section className='section-center'>
       <form onSubmit={handleSubmit} className='grocery-form'>
@@ -41,6 +44,7 @@ const App = () => {
       </form>
       <div className="grocery-container">
         <List list={list} />
+        <button onClick={clearAllItems} className="clear-btn">clear items</button>
       </div>
     </section>
   )
