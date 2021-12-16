@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useRef } from "react";
 
 
 const AppContext = React.createContext();
@@ -9,7 +9,8 @@ const AppProvider = ({ children }) => {
     const [showSidebar, setShowSidebar] = useState(false);
     //state for modal
     const [showModal, setShowModal] = useState(false);
-
+    //ref for modal overlay to close modal on overlay click
+    const modalOverlayRef = useRef(null);
     // SIDEBAR
     const openSidebar = () => {
         setShowSidebar(true);
@@ -26,6 +27,11 @@ const AppProvider = ({ children }) => {
     const closeModal = () => {
         setShowModal(false);
     }
+    const closeOnOverlayClick = (e) => {
+        if (e.target === modalOverlayRef.current) {
+            setShowModal(false);
+        }
+    }
     return (
         <AppContext.Provider
             value={
@@ -35,7 +41,9 @@ const AppProvider = ({ children }) => {
                     closeSidebar,
                     showModal,
                     openModal,
-                    closeModal
+                    closeModal,
+                    modalOverlayRef,
+                    closeOnOverlayClick
                 }
 
             }>
