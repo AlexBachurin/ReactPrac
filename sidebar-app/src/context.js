@@ -11,6 +11,8 @@ const AppProvider = ({ children }) => {
     const [showModal, setShowModal] = useState(false);
     //ref for modal overlay to close modal on overlay click
     const modalOverlayRef = useRef(null);
+    //same for main to close sidebar on outside click
+    const mainRef = useRef(null)
     // SIDEBAR
     const openSidebar = () => {
         setShowSidebar(true);
@@ -18,6 +20,11 @@ const AppProvider = ({ children }) => {
 
     const closeSidebar = () => {
         setShowSidebar(false);
+    }
+    const closeSidebarOutClick = (e) => {
+        if (e.target === mainRef.current) {
+            setShowSidebar(false)
+        }
     }
 
     //MODAL
@@ -32,6 +39,7 @@ const AppProvider = ({ children }) => {
             setShowModal(false);
         }
     }
+
     return (
         <AppContext.Provider
             value={
@@ -43,7 +51,9 @@ const AppProvider = ({ children }) => {
                     openModal,
                     closeModal,
                     modalOverlayRef,
-                    closeOnOverlayClick
+                    closeOnOverlayClick,
+                    mainRef,
+                    closeSidebarOutClick
                 }
 
             }>
