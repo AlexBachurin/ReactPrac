@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import List from './components/List';
 const App = () => {
   //state for input
@@ -44,6 +44,7 @@ const App = () => {
   //clear All items
   const clearAllItems = () => {
     setList([]);
+    setAlert({ show: true, msg: 'list cleared', type: 'danger' })
   }
 
   //delete single item
@@ -52,6 +53,7 @@ const App = () => {
       return item.id !== id;
     })
     setList(newList)
+    setAlert({ show: true, msg: 'item successfully deleted', type: 'danger' })
   }
 
   //EDIT ITEM
@@ -64,6 +66,16 @@ const App = () => {
     setName(itemToEdit.value);
     setEditId(itemToEdit.id)
   }
+
+  //remove alert
+  useEffect(() => {
+    const alertId = setTimeout(() => {
+      setAlert({ show: false, msg: '', type: '' })
+    }, 3000);
+    return () => {
+      clearTimeout(alertId);
+    }
+  }, [list])
   return (
     <section className='section-center'>
       <form onSubmit={handleSubmit} className='grocery-form'>
