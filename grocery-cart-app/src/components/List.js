@@ -1,6 +1,6 @@
 import React from 'react'
 import { FaPencilAlt, FaTrashAlt } from 'react-icons/fa'
-const List = ({ list }) => {
+const List = ({ list, deleteItem }) => {
     return (
         <div className='grocery-list'>
             {list.map(item => {
@@ -11,7 +11,7 @@ const List = ({ list }) => {
                             <button className="edit-btn">
                                 <FaPencilAlt />
                             </button>
-                            <button className="delete-btn">
+                            <button onClick={() => deleteItem(item.id)} className="delete-btn">
                                 <FaTrashAlt />
                             </button>
                         </div>

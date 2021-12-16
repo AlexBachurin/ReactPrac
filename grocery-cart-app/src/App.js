@@ -32,6 +32,14 @@ const App = () => {
   const clearAllItems = () => {
     setList([]);
   }
+
+  //delete single item
+  const deleteItem = (id) => {
+    const newList = list.filter(item => {
+      return item.id !== id;
+    })
+    setList(newList)
+  }
   return (
     <section className='section-center'>
       <form onSubmit={handleSubmit} className='grocery-form'>
@@ -43,7 +51,7 @@ const App = () => {
         </div>
       </form>
       <div className="grocery-container">
-        <List list={list} />
+        <List list={list} deleteItem={deleteItem} />
         <button onClick={clearAllItems} className="clear-btn">clear items</button>
       </div>
     </section>
