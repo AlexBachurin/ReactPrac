@@ -1,14 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaTwitter, FaGoogle, FaFacebook, FaBars } from 'react-icons/fa'
 function App() {
+  const [showNav, setShowNav] = useState(false);
+
+  //toggle navBar functionality
+  const showNavBar = () => {
+    setShowNav(!showNav)
+  }
   return (
     <nav>
       <div className="nav-center">
         <div className="nav-header">
           logo
-          <button className="nav-toggle"><FaBars /></button>
+          <button onClick={showNavBar} className="nav-toggle"><FaBars /></button>
         </div>
-        <div className="links-container">
+        <div className={`links-container ${showNav ? 'show-container' : null}`}>
           <ul className="links">
             <li>
               <a href="#">home</a>
