@@ -1,7 +1,11 @@
-import React, { useState } from "react";
-import { FaTwitter, FaGoogle, FaFacebook, FaBars } from 'react-icons/fa'
+import React, { useRef, useState } from "react";
+import { links, social } from './data'
+import { FaBars } from 'react-icons/fa'
 function App() {
   const [showNav, setShowNav] = useState(false);
+  //refs for link container and links to determine height to show
+  const linksContainerRef = useRef(null);
+  const linksRef = useRef(null);
 
   //toggle navBar functionality
   const showNavBar = () => {
@@ -16,27 +20,25 @@ function App() {
         </div>
         <div className={`links-container ${showNav ? 'show-container' : null}`}>
           <ul className="links">
-            <li>
-              <a href="#">home</a>
-            </li>
-            <li>
-              <a href="#">about</a>
-            </li>
-            <li>
-              <a href="#">projects</a>
-            </li>
-            <li>
-              <a href="#">contact</a>
-            </li>
-            <li>
-              <a href="#">profile</a>
-            </li>
+            {links.map(link => {
+              const { id, url, text } = link;
+              return (
+                <li key={id}>
+                  <a href={url}>{text}</a>
+                </li>
+              )
+            })}
           </ul>
         </div>
         <ul className="social-icons">
-          <a href="twitter.com"><FaTwitter /></a>
-          <a href="facebook.com"><FaFacebook /></a>
-          <a href="google.com"><FaGoogle /></a>
+          {social.map(item => {
+            const { id, url, icon } = item;
+            return (
+              <li key={id}>
+                <a href={url}>{icon}</a>
+              </li>
+            )
+          })}
         </ul>
       </div>
     </nav>
