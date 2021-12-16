@@ -9,6 +9,7 @@ const App = () => {
   const [alert, setAlert] = useState({ show: false, msg: '', type: '' })
   //state for editing item on list
   const [isEditing, setIsEditing] = useState(false)
+  const [editId, setEditId] = useState('');
   //handle Submit
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -18,7 +19,18 @@ const App = () => {
     }
     //handle edit
     else if (isEditing) {
-
+      //update our list by mapping through list and if we find item with editId
+      //then change it and return new list to state
+      const newList = list.map(item => {
+        if (item.id === editId) {
+          return { ...item, value: name }
+        }
+        return item;
+      })
+      setList(newList);
+      setAlert({ show: true, msg: 'value succesfully changed', type: 'success' })
+      setIsEditing(false);
+      setName('')
     }
     //if all ok add to list
     else {
@@ -26,6 +38,7 @@ const App = () => {
       const newItem = { id: new Date().getTime().toString(), value: name }
       setList([...list, newItem])
       setAlert({ show: true, msg: 'item sucessfully added', type: 'success' })
+      setName('')
     }
   }
   //clear All items
@@ -40,6 +53,17 @@ const App = () => {
     })
     setList(newList)
   }
+
+  //EDIT ITEM
+  const editItem = (id) => {
+    setIsEditing(true);
+    const itemToEdit = list.find(item => {
+      return item.id === id;
+    })
+    //set name of editing item to input and put its id in state
+    setName(itemToEdit.value);
+    setEditId(itemToEdit.id)
+  }
   return (
     <section className='section-center'>
       <form onSubmit={handleSubmit} className='grocery-form'>
@@ -47,11 +71,11 @@ const App = () => {
         <h3>Grocery cart</h3>
         <div className="form-control">
           <input onChange={(e) => setName(e.target.value)} className='grocery' type="text" placeholder='enter value' value={name} />
-          <button type='submit' className='submit-btn'>add</button>
+          <button type='submit' className='submit-btn'>{isEditing ? 'edit' : 'add'}</button>
         </div>
       </form>
       <div className="grocery-container">
-        <List list={list} deleteItem={deleteItem} />
+        <List list={list} deleteItem={deleteItem} editItem={editItem} />
         <button onClick={clearAllItems} className="clear-btn">clear items</button>
       </div>
     </section>
