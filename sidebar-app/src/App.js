@@ -1,21 +1,14 @@
 import React from "react";
-import { FaBars } from 'react-icons/fa'
+
+import Modal from "./components/Modal";
 import Sidebar from "./components/Sidebar";
+import Home from "./components/Home";
 
 function App() {
   return (
     <>
-      <main>
-        <button className="sidebar-toggle">
-          <FaBars />
-        </button>
-        <button className="btn">show Modal</button>
-      </main>
-      <div className="modal-overlay">
-        <div className="modal-container">
-          modal content
-        </div>
-      </div>
+      <Home />
+      <Modal />
       <Sidebar />
     </>
   );
