@@ -8,7 +8,6 @@ const AppContext = React.createContext();
 const AppProvider = ({ children }) => {
     //sidebar state
     const [isSideBarOpen, setisSideBarOpen] = useState(false)
-
     //open sidebar
     const openSidebar = () => {
         setisSideBarOpen(true);
@@ -22,7 +21,8 @@ const AppProvider = ({ children }) => {
             {
                 isSideBarOpen,
                 openSidebar,
-                closeSidebar
+                closeSidebar,
+                sublinks
             }
         } >
             {children}
