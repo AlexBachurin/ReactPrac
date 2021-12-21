@@ -3,9 +3,15 @@ import { FaBars } from 'react-icons/fa'
 import { useGlobalContext } from '../context'
 const Navbar = () => {
 
-    const { openSidebar, handleButtonHover } = useGlobalContext();
+    const { openSidebar, handleButtonHover, closeSubmenu } = useGlobalContext();
+    //close submenu on nav hover but not when we are hovering button
+    const handleSubmenu = (e) => {
+        if (!e.target.classList.contains('link-btn')) {
+            closeSubmenu();
+        }
+    }
     return (
-        <nav className='nav'>
+        <nav onMouseOver={handleSubmenu} className='nav'>
             <div className="nav-center">
                 <div className="nav-header">
                     <img src="https://raw.githubusercontent.com/john-smilga/react-projects/e44b541e002fca44db1e07b2d0a5275824f6d0e6/13-stripe-submenus/setup/src/images/logo.svg" alt="logo" className="nav-logo" />

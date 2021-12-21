@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { useGlobalContext } from '../context'
 const Submenu = () => {
-    const { sublinks, submenuPage, isSubmenuOpen, location } = useGlobalContext();
+    const { submenuPage, isSubmenuOpen, location } = useGlobalContext();
     //useRef to style container with proper location
     const submenuContainerRef = useRef(null);
     //set columns in submenu depending on how many links we have
@@ -22,7 +22,7 @@ const Submenu = () => {
     }, [location, submenuPage])
 
     return (
-        <aside ref={submenuContainerRef} className={`submenu ${isSubmenuOpen ? 'show' : null}`}>
+        <aside ref={submenuContainerRef} className={`${isSubmenuOpen ? 'submenu show' : 'submenu'}`}>
             <h4>{page}</h4>
             <div className={`submenu-center ${cols}`}>
                 {links.map((link, index) => {

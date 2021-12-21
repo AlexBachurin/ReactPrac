@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useRef, useContext } from "react";
 
 import sublinks from "./data";
 
@@ -13,7 +13,7 @@ const AppProvider = ({ children }) => {
     //name of current hovered button 
     const [pageName, setPageName] = useState('');
     //state for submenu
-    const [submenuPage, setSubmenuPage] = useState({});
+    const [submenuPage, setSubmenuPage] = useState({ page: '', links: [] });
     const [isSubmenuOpen, setIsSubmenuOpen] = useState(false);
     //open sidebar
     const openSidebar = () => {
@@ -25,8 +25,8 @@ const AppProvider = ({ children }) => {
     }
 
     //**Submenu */
-    const openSubmenu = () => {
-
+    const closeSubmenu = () => {
+        setIsSubmenuOpen(false)
     }
 
     //get location of hovered button, button name which is hovered, and open submenu
@@ -61,7 +61,8 @@ const AppProvider = ({ children }) => {
                 pageName,
                 location,
                 isSubmenuOpen,
-                submenuPage
+                submenuPage,
+                closeSubmenu
             }
         } >
             {children}
