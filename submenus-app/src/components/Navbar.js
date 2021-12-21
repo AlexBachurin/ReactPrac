@@ -3,7 +3,7 @@ import { FaBars } from 'react-icons/fa'
 import { useGlobalContext } from '../context'
 const Navbar = () => {
 
-    const { openSidebar } = useGlobalContext();
+    const { openSidebar, getLocation } = useGlobalContext();
     return (
         <nav className='nav'>
             <div className="nav-center">
@@ -13,13 +13,13 @@ const Navbar = () => {
                 </div>
                 <ul className="nav-links">
                     <li>
-                        <button className='link-btn'>products</button>
+                        <button onMouseOver={getLocation} className='link-btn'>products</button>
                     </li>
                     <li>
-                        <button className='link-btn'>developers</button>
+                        <button onMouseOver={getLocation} className='link-btn'>developers</button>
                     </li>
                     <li>
-                        <button className='link-btn'>company</button>
+                        <button onMouseOver={getLocation} className='link-btn'>company</button>
                     </li>
                 </ul>
                 <button className="btn signin-btn">Sign in</button>
