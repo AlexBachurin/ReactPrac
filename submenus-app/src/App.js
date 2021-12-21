@@ -1,6 +1,7 @@
 import Main from "./components/Main";
 import Navbar from "./components/Navbar";
 import Sidebar from "./components/Sidebar";
+import Submenu from "./components/Submenu";
 
 function App() {
   return (
@@ -8,6 +9,7 @@ function App() {
       <Navbar />
       <Main />
       <Sidebar />
+      <Submenu />
     </>
   );
 }
