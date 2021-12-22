@@ -6,6 +6,14 @@ const reducer = (state, action) => {
             return item.id !== action.payload;
         })
         return { ...state, cartItems: tempCart }
+    } else if (action.type === 'INCREASE_AMOUNT') {
+        const tempCart = state.cartItems.map(item => {
+            if (item.id === action.payload) {
+                return { ...item, amount: item.amount + 1 }
+            }
+            return item;
+        })
+        return { ...state, cartItems: tempCart }
     }
     return state;
 }

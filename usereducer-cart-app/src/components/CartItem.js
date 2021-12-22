@@ -2,7 +2,7 @@ import React from 'react'
 import { MdKeyboardArrowUp, MdKeyboardArrowDown } from 'react-icons/md';
 import { useGlobalContext } from '../context';
 const CartItem = ({ id, title, price, img, amount }) => {
-    const { removeItem } = useGlobalContext();
+    const { removeItem, increaseAmount } = useGlobalContext();
     return (
         <article className='cart-item'>
             <img src={img} alt={title} />
@@ -12,7 +12,7 @@ const CartItem = ({ id, title, price, img, amount }) => {
                 <button onClick={() => removeItem(id)} className='remove-btn'>remove</button>
             </div>
             <div>
-                <button className="amount-btn"><MdKeyboardArrowUp /></button>
+                <button onClick={() => increaseAmount(id)} className="amount-btn"><MdKeyboardArrowUp /></button>
                 <p className='amount'>{amount}</p>
                 <button className="amount-btn"><MdKeyboardArrowDown /></button>
             </div>
