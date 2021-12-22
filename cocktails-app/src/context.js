@@ -20,7 +20,11 @@ const AppProvider = ({ children }) => {
     const searchHandler = (e) => {
         const value = e.target.value;
         setTerm(value);
-
+    }
+    //reset term on home click and after we clicked on details of single cocktail
+    const resetTerm = () => {
+        setTerm('');
+        inputRef.current.value = '';
     }
     //modify url with searchTerm
     const url = `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${term}`;
@@ -31,7 +35,6 @@ const AppProvider = ({ children }) => {
             setLoading(true)
             const res = await fetch(url);
             const data = await res.json();
-            console.log(data);
             const { drinks } = data;
             // !!! if we have drinks when set it to state, if not set to empty array or we will get white screen
             if (drinks) {
@@ -57,7 +60,8 @@ const AppProvider = ({ children }) => {
                 cocktails,
                 term,
                 inputRef,
-                searchHandler
+                searchHandler,
+                resetTerm
             }
         }>
             {children}

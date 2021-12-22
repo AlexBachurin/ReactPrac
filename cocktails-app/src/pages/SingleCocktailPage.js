@@ -11,7 +11,6 @@ const SingleCocktailPage = () => {
     const [cocktail, setCocktail] = useState(null);
     //fetch single cocktail by id
     const url = `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`;
-    console.log(id);
     const getCocktail = async () => {
         try {
             setLoading(true);
