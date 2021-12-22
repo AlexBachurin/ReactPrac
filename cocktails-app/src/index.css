@@ -195,6 +195,7 @@ Error
 .error-container {
   text-align: center;
   text-transform: capitalize;
+  padding-top: 200px;
 }
 /* 
 ====== 
