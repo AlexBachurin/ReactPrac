@@ -57,7 +57,8 @@ const reducer = (state, action) => {
     if (action.type === 'GET_ITEMS') {
         return { ...state, loading: false, cartItems: action.payload }
     }
-    return state;
+    throw new Error('No such action type found')
+
 }
 
 export default reducer;
