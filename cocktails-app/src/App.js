@@ -1,15 +1,23 @@
-import CocktailsList from "./components/CocktailsList";
-import Navbar from "./components/Navbar";
-import SearchForm from "./components/SearchForm";
+import React from "react";
 
-function App() {
+import {
+  BrowserRouter as Router,
+  Switch,
+  Routes,
+  Route,
+} from "react-router-dom";
+import About from "./pages/About";
+import Home from "./pages/Home";
+
+const App = () => {
   return (
     <>
-      <Navbar />
-      <main>
-        <SearchForm />
-        <CocktailsList />
-      </main>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+        </Routes>
+      </Router>
     </>
   );
 }
