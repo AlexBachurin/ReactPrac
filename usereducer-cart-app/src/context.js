@@ -9,7 +9,7 @@ const AppProvider = ({ children }) => {
     return (
         <AppContext.Provider value={
             {
-
+                data
             }
         }>
             {children}
