@@ -6,7 +6,7 @@ const AppContext = React.createContext();
 
 const AppProvider = ({ children }) => {
     //state for loading
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(true)
     //state for drinks from data
     const [cocktails, setCocktails] = useState([]);
     //state for search term
@@ -36,7 +36,6 @@ const AppProvider = ({ children }) => {
             // !!! if we have drinks when set it to state, if not set to empty array or we will get white screen
             if (drinks) {
                 setCocktails(drinks);
-                setLoading(false);
             } else {
                 setCocktails([])
             }
@@ -44,6 +43,7 @@ const AppProvider = ({ children }) => {
             setLoading(false);
             console.log(error)
         }
+        setLoading(false)
     }
     //fetch drinks on page load and every time term changes
     useEffect(() => {

@@ -1,9 +1,13 @@
 import React from 'react'
 import { useGlobalContext } from '../context'
+import Loading from './Loading';
 import SearchError from './SearchError';
 import SingleCocktail from './SingleCocktail';
 const CocktailsList = () => {
-    const { cocktails } = useGlobalContext();
+    const { cocktails, loading } = useGlobalContext();
+    if (loading) {
+        return <Loading />
+    }
     if (cocktails.length === 0) {
         return <SearchError />
     }

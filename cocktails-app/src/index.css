@@ -229,6 +229,17 @@ Cocktails List
   column-gap: 2rem;
   /* align-items: start; */
 }
+.loading-container {
+  width: 250px;
+  height: 150px;
+  margin: 0 auto;
+  margin-top: 40px;
+}
+.loading-container img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
 @media screen and (min-width: 576px) {
   .cocktails-center {
     grid-template-columns: repeat(auto-fill, minmax(338.8px, 1fr));

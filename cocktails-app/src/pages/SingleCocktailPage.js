@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
+import Loading from '../components/Loading';
 import Navbar from '../components/Navbar'
 
 const SingleCocktailPage = () => {
@@ -53,6 +54,11 @@ const SingleCocktailPage = () => {
     useEffect(() => {
         getCocktail();
     }, [id])
+    if (loading) {
+        return (
+            <Loading />
+        )
+    }
     //check if cocktail is not null
     if (!cocktail) {
         return <h2 className='section-title'>no cocktail to display</h2>
