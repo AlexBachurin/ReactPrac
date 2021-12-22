@@ -1,12 +1,14 @@
 const reducer = (state, action) => {
     if (action.type === 'CLEAR_ALL_ITEMS') {
         return { ...state, cartItems: [] }
-    } else if (action.type === 'REMOVE_ITEM') {
+    }
+    if (action.type === 'REMOVE_ITEM') {
         const tempCart = state.cartItems.filter(item => {
             return item.id !== action.payload;
         })
         return { ...state, cartItems: tempCart }
-    } else if (action.type === 'INCREASE_AMOUNT') {
+    }
+    if (action.type === 'INCREASE_AMOUNT') {
         //increase amount of item by provided id
         const tempCart = state.cartItems.map(item => {
             if (item.id === action.payload) {
@@ -15,7 +17,8 @@ const reducer = (state, action) => {
             return item;
         })
         return { ...state, cartItems: tempCart }
-    } else if (action.type === 'DECREASE_AMOUNT') {
+    }
+    if (action.type === 'DECREASE_AMOUNT') {
         //decrease amount of item by provided id
         const tempCart = state.cartItems.map(item => {
             if (item.id === action.payload) {
@@ -28,7 +31,8 @@ const reducer = (state, action) => {
             return item.amount > 0;
         })
         return { ...state, cartItems: filteredCart }
-    } else if (action.type === 'GET_TOTALS') {
+    }
+    if (action.type === 'GET_TOTALS') {
         let { totalPrice, totalAmount } = state.cartItems.reduce(
             (cartTotal, cartItem) => {
                 const { price, amount } = cartItem
@@ -46,6 +50,12 @@ const reducer = (state, action) => {
         totalPrice = parseFloat(totalPrice.toFixed(2))
 
         return { ...state, totalPrice, totalAmount }
+    }
+    if (action.type === 'LOADING') {
+        return { ...state, loading: true }
+    }
+    if (action.type === 'GET_ITEMS') {
+        return { ...state, loading: false, cartItems: action.payload }
     }
     return state;
 }
