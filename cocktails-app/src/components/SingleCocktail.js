@@ -1,5 +1,5 @@
 import React from 'react'
-
+import { Link } from 'react-router-dom'
 const SingleCocktail = ({ idDrink: id, strAlcoholic: alcholic, strGlass: glass, strDrinkThumb: img, strDrink: name }) => {
     return (
         <article key={id} className='cocktail'>
@@ -10,7 +10,7 @@ const SingleCocktail = ({ idDrink: id, strAlcoholic: alcholic, strGlass: glass, 
                 <h3>{name}</h3>
                 <h4>{glass}</h4>
                 <p>{alcholic}</p>
-                <a href="" className='btn btn-primary btn-details'>details</a>
+                <Link to={`/cocktail/${id}`} className='btn btn-primary btn-details'>details</Link>
             </div>
         </article>
     )

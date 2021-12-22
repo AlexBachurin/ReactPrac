@@ -8,6 +8,7 @@ import {
 import About from "./pages/About";
 import Home from "./pages/Home";
 import Error from "./pages/Error";
+import SingleCocktailPage from "./pages/SingleCocktailPage";
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="*" element={<Error />} />
+          <Route path='/cocktail/:id' element={<SingleCocktailPage />} />
         </Routes>
       </Router>
     </>
