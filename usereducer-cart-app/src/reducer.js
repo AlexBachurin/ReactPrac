@@ -28,6 +28,24 @@ const reducer = (state, action) => {
             return item.amount > 0;
         })
         return { ...state, cartItems: filteredCart }
+    } else if (action.type === 'GET_TOTALS') {
+        let { totalPrice, totalAmount } = state.cartItems.reduce(
+            (cartTotal, cartItem) => {
+                const { price, amount } = cartItem
+                const itemTotal = price * amount
+
+                cartTotal.totalPrice += itemTotal
+                cartTotal.totalAmount += amount
+                return cartTotal
+            },
+            {
+                totalPrice: 0,
+                totalAmount: 0,
+            }
+        )
+        totalPrice = parseFloat(totalPrice.toFixed(2))
+
+        return { ...state, totalPrice, totalAmount }
     }
     return state;
 }

@@ -7,8 +7,8 @@ const AppContext = React.createContext();
 const initialState = {
     loading: false,
     cartItems: data,
-    totalItems: 0,
     totalAmount: 0,
+    totalPrice: 0,
 
 }
 
@@ -31,6 +31,12 @@ const AppProvider = ({ children }) => {
     const decreaseAmount = (id) => {
         dispatch({ type: 'DECREASE_AMOUNT', payload: id })
     }
+    useEffect(() => {
+        //get total price of items and total amount of items
+        dispatch({ type: 'GET_TOTALS' });
+
+    }, [state.cartItems])
+
     return (
         <AppContext.Provider value={
             {
