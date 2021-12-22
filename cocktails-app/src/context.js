@@ -2,7 +2,6 @@ import React, { useState, useEffect, useContext, useRef } from "react";
 
 
 const AppContext = React.createContext();
-const url = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=';
 
 
 const AppProvider = ({ children }) => {
@@ -14,6 +13,17 @@ const AppProvider = ({ children }) => {
     const [term, setTerm] = useState('');
     //ref for input
     const inputRef = useRef(null);
+    // //state for display error if we cant find drink
+    // const [isError, setIsError] = useState(false);
+
+    //search handler
+    const searchHandler = (e) => {
+        const value = e.target.value;
+        setTerm(value);
+
+    }
+    //modify url with searchTerm
+    const url = `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${term}`;
 
     //helper to fetch
     const getCocktails = async () => {
@@ -23,25 +33,31 @@ const AppProvider = ({ children }) => {
             const data = await res.json();
             console.log(data);
             const { drinks } = data;
-            console.log(drinks)
-            setCocktails(drinks);
-            setLoading(false);
+            // !!! if we have drinks when set it to state, if not set to empty array or we will get white screen
+            if (drinks) {
+                setCocktails(drinks);
+                setLoading(false);
+            } else {
+                setCocktails([])
+            }
         } catch (error) {
+            setLoading(false);
             console.log(error)
         }
     }
-    //fetch drinks on page load
+    //fetch drinks on page load and every time term changes
     useEffect(() => {
         getCocktails();
         console.log(cocktails)
-    }, [])
+    }, [term])
     return (
         <AppContext.Provider value={
             {
                 loading,
                 cocktails,
                 term,
-                inputRef
+                inputRef,
+                searchHandler
             }
         }>
             {children}

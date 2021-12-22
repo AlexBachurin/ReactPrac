@@ -197,6 +197,12 @@ Error
   text-transform: capitalize;
   padding-top: 200px;
 }
+.error-message {
+  font-size: 2rem;
+  text-transform: capitalize;
+  text-align: center;
+  padding-top: 40px;
+}
 /* 
 ====== 
 Cocktails List 
