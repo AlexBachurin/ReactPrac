@@ -6,8 +6,10 @@ function App() {
   return (
     <>
       <Navbar />
-      <SearchForm />
-      <CocktailsList />
+      <main>
+        <SearchForm />
+        <CocktailsList />
+      </main>
     </>
   );
 }
