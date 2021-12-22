@@ -22,7 +22,9 @@ const AppProvider = ({ children }) => {
             const res = await fetch(url);
             const data = await res.json();
             console.log(data);
-            setCocktails(data);
+            const { drinks } = data;
+            console.log(drinks)
+            setCocktails(drinks);
             setLoading(false);
         } catch (error) {
             console.log(error)

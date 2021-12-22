@@ -1,6 +1,8 @@
 import React from 'react'
-
+import { useGlobalContext } from '../context'
 const CocktailsList = () => {
+    const { cocktails } = useGlobalContext();
+    console.log(cocktails)
     return (
         <section className='section'>
             <h2 className="section-title">
