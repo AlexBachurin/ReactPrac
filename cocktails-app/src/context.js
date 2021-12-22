@@ -9,7 +9,7 @@ const AppProvider = ({ children }) => {
     //state for loading
     const [loading, setLoading] = useState(false)
     //state for drinks from data
-    const [cocktails, setCocktails] = useState('');
+    const [cocktails, setCocktails] = useState([]);
     //state for search term
     const [term, setTerm] = useState('');
     //ref for input
