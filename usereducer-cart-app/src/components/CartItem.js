@@ -1,13 +1,15 @@
 import React from 'react'
-import { MdKeyboardArrowUp, MdKeyboardArrowDown } from 'react-icons/md'
+import { MdKeyboardArrowUp, MdKeyboardArrowDown } from 'react-icons/md';
+import { useGlobalContext } from '../context';
 const CartItem = ({ id, title, price, img, amount }) => {
+    const { removeItem } = useGlobalContext();
     return (
         <article className='cart-item'>
             <img src={img} alt={title} />
             <div>
                 <h4>{title}</h4>
                 <p className='item-price'>${price}</p>
-                <button className='remove-btn'>remove</button>
+                <button onClick={() => removeItem(id)} className='remove-btn'>remove</button>
             </div>
             <div>
                 <button className="amount-btn"><MdKeyboardArrowUp /></button>
