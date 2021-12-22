@@ -5,6 +5,18 @@ import CartFooter from './CartFooter';
 const CartContainer = () => {
     const { cartItems } = useGlobalContext();
     console.log(cartItems);
+    if (cartItems.length === 0) {
+        return (
+            <section className="cart">
+                <header>
+                    <h2>Your Cart</h2>
+                </header>
+                <div>
+                    <h4 className='empty-cart'>is currently empty</h4>
+                </div>
+            </section>
+        )
+    }
     return (
         <section className='cart'>
             <header>
