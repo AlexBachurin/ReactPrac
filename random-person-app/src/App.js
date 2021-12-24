@@ -11,6 +11,7 @@ const url = 'https://randomuser.me/api/'
 function App() {
 
   const [user, setUser] = useState({});
+  const [currentLabel, setCurrentLabel] = useState('');
 
   const fetchRandomUser = async () => {
     const res = await fetch(url);
@@ -31,6 +32,12 @@ function App() {
     setUser(person);
     console.log(person);
   }
+  //handle mouse over on button
+  const handleButtonHover = (e) => {
+    const label = e.currentTarget.dataset.label;
+    console.log(label);
+    setCurrentLabel(label);
+  }
   useEffect(() => {
     fetchRandomUser();
   }, [])
@@ -39,16 +46,16 @@ function App() {
       <div className="block bcg-black"></div>
       <div className="block">
         <div className="container">
-          <img className="user-img" src="https://res.cloudinary.com/dljezd6qv/image/upload/v1632861499/No-Image-Placeholder.svg.png" alt="random-user" />
-          <p className="user-title">My name is</p>
-          <p className="user-value">name</p>
+          <img className="user-img" src={`${(user && user.image) || 'https://res.cloudinary.com/dljezd6qv/image/upload/v1632861499/No-Image-Placeholder.svg.png'}`} alt="random-user" />
+          <p className="user-title">My {currentLabel} is</p>
+          <p className="user-value">{user[currentLabel]}</p>
           <div className="values-list">
-            <button className="icon" data-labe='name'><FaUser /></button>
-            <button className="icon" data-labe='email'><FaEnvelopeOpen /></button>
-            <button className="icon" data-labe='age'><FaCalendarTimes /></button>
-            <button className="icon" data-labe='street'><FaMap /></button>
-            <button className="icon" data-labe='phone'><FaPhone /></button>
-            <button className="icon" data-labe='password'><FaLock /></button>
+            <button onMouseOver={handleButtonHover} className="icon" data-label='name'><FaUser /></button>
+            <button onMouseOver={handleButtonHover} className="icon" data-label='email'><FaEnvelopeOpen /></button>
+            <button onMouseOver={handleButtonHover} className="icon" data-label='age'><FaCalendarTimes /></button>
+            <button onMouseOver={handleButtonHover} className="icon" data-label='street'><FaMap /></button>
+            <button onMouseOver={handleButtonHover} className="icon" data-label='phone'><FaPhone /></button>
+            <button onMouseOver={handleButtonHover} className="icon" data-label='password'><FaLock /></button>
           </div>
         </div>
       </div>
