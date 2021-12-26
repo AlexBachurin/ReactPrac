@@ -2,15 +2,19 @@ import React, { useEffect, useState } from "react";
 import Follower from "./components/Follower";
 import Loading from "./components/Loading";
 import useFetch from "./useFetch";
-import paginate from "./utils";
 function App() {
   const { data, loading } = useFetch();
-  const [followers, setFollowers] = useState([]);
+  //state for page
+  const [page, setPage] = useState(0);
+  //state for follower subarray based on current page
+  const [followersOnPage, setFollowersOnPage] = useState([]);
 
   //check if loading then return, only when we finished loading use paginate functionality
+  //thats why we add loading into dependecy array
   useEffect(() => {
     if (loading) return;
-    console.log(paginate(data));
+    //show single followers page, based on current page value
+    setFollowersOnPage(data[page])
   }, [loading])
   return (
     <main>
@@ -22,7 +26,7 @@ function App() {
 
         {loading ? <Loading /> :
           <div className="container">
-            {data.map((item) => {
+            {followersOnPage.map((item) => {
               return (
                 <Follower key={item.id} {...item} />
               )

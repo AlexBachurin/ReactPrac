@@ -6,15 +6,14 @@ const url = 'https://api.github.com/users/john-smilga/followers?per_page=100';
 
 const useFetch = () => {
     const [data, setData] = useState([]);
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
 
     const getData = async () => {
-        setLoading(true)
         try {
             const res = await fetch(url);
             const data = await res.json();
-            setData(data);
-            setLoading(false);
+            //use paginate here to transform our array into subarrays 
+            setData(paginate(data))
         } catch (error) {
             console.log(error)
         }
