@@ -9,13 +9,19 @@ function App() {
   //state for follower subarray based on current page
   const [followersOnPage, setFollowersOnPage] = useState([]);
 
+  //Click on page button
+  const handlePageChange = (e) => {
+    const id = e.target.id;
+    setPage(id);
+  }
+
   //check if loading then return, only when we finished loading use paginate functionality
   //thats why we add loading into dependecy array
   useEffect(() => {
     if (loading) return;
     //show single followers page, based on current page value
     setFollowersOnPage(data[page])
-  }, [loading])
+  }, [loading, page])
   return (
     <main>
       <div className="section-title">
@@ -23,7 +29,6 @@ function App() {
         <div className="underline"></div>
       </div>
       <section className="followers">
-
         {loading ? <Loading /> :
           <div className="container">
             {followersOnPage.map((item) => {
@@ -33,6 +38,17 @@ function App() {
             })}
           </div>
         }
+        {loading ? null :
+          <div className="btn-container">
+            <button className="prev-btn">Prev</button>
+            {/* iterate through followers array and display every page as button index + 1 */}
+            {data.map((item, index) => {
+              return (
+                <button id={index} onClick={handlePageChange} key={index} className="page-btn">{index + 1}</button>
+              )
+            })}
+            <button className="next-btn">Next</button>
+          </div>}
       </section>
     </main>
   );
