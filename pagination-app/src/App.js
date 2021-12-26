@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Follower from "./components/Follower";
 import Loading from "./components/Loading";
 import useFetch from "./useFetch";
-import paginate from "./utils";
+
 function App() {
   const { data, loading } = useFetch();
   //state for page
@@ -13,7 +13,7 @@ function App() {
   //  ***Click on page button***
   const handlePageChange = (e) => {
     const id = e.target.id;
-    setPage(id);
+    setPage(Number(id));
   }
   // ***NEXT AND PREV BTNS***
   const nextPage = () => {
@@ -28,7 +28,7 @@ function App() {
   const prevPage = () => {
     setPage(oldPage => {
       let prevPage = oldPage - 1;
-      if (prevPage <= 0) {
+      if (prevPage < 0) {
         prevPage = data.length - 1;
       }
       return prevPage;
@@ -63,7 +63,7 @@ function App() {
             {/* iterate through followers array and display every page as button index + 1 */}
             {data.map((item, index) => {
               return (
-                <button id={index} onClick={handlePageChange} key={index} className="page-btn">{index + 1}</button>
+                <button id={index} onClick={handlePageChange} key={index} className={`page-btn ${index === page ? 'active-btn' : null}`}>{index + 1}</button>
               )
             })}
             <button onClick={nextPage} className="next-btn">Next</button>
