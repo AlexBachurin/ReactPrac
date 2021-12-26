@@ -11,7 +11,7 @@ const url = 'https://randomuser.me/api/'
 function App() {
 
   const [user, setUser] = useState({});
-  const [currentLabel, setCurrentLabel] = useState('');
+  const [currentLabel, setCurrentLabel] = useState('name');
 
   const fetchRandomUser = async () => {
     const res = await fetch(url);
@@ -31,6 +31,8 @@ function App() {
     const person = { name: `${first} ${last}`, email, phone, age, password, image, street: `${number} ${name}` };
     setUser(person);
     console.log(person);
+    //also set label state to name
+    setCurrentLabel('name')
   }
   //handle mouse over on button
   const handleButtonHover = (e) => {
@@ -57,6 +59,7 @@ function App() {
             <button onMouseOver={handleButtonHover} className="icon" data-label='phone'><FaPhone /></button>
             <button onMouseOver={handleButtonHover} className="icon" data-label='password'><FaLock /></button>
           </div>
+          <button onClick={fetchRandomUser} className="btn">random user</button>
         </div>
       </div>
     </main>
