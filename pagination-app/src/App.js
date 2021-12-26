@@ -1,4 +1,6 @@
 import React, { useEffect } from "react";
+import Follower from "./components/Follower";
+import Loading from "./components/Loading";
 import useFetch from "./useFetch";
 function App() {
   const { data, loading } = useFetch();
@@ -9,21 +11,20 @@ function App() {
   return (
     <main>
       <div className="section-title">
-        <h1>Pagination</h1>
+        {loading ? 'Loading...' : <h1>Pagination</h1>}
         <div className="underline"></div>
       </div>
       <section className="followers">
-        <div className="container">
-          {data.map(({ avatar_url, html_url, id, login }) => {
-            return (
-              <article className="card">
-                <img src={avatar_url} alt={login} />
-                <h4>{login}</h4>
-                <a className="btn" href={html_url}>View Profile</a>
-              </article>
-            )
-          })}
-        </div>
+
+        {loading ? <Loading /> :
+          <div className="container">
+            {data.map((item) => {
+              return (
+                <Follower key={item.id} {...item} />
+              )
+            })}
+          </div>
+        }
       </section>
     </main>
   );

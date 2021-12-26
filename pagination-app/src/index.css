@@ -215,6 +215,10 @@ Pagination
   font-size: 1rem;
   cursor: pointer;
 }
+.loading {
+  text-align: center;
+  font-size: 40px;
+}
 
 @media screen and (min-width: 775px) {
   .btn-container {
