@@ -14,22 +14,44 @@ function App() {
   const [page, setPage] = useState(1);
   //state to know if we need to fetch new Images
   const [newImages, setNewImages] = useState(false);
+  //state for searchTerm
+  const [searchTerm, setSearchTerm] = useState('')
 
+  // *** FETCH FUNCTION ***
   const fetchPhotos = async () => {
     setLoading(true)
     let url;
     //url for page
     const urlPage = `&page=${page}`;
+    //url for searchTerm
+    const query = `&query=${searchTerm}`
     //main url to get list of photos
     url = `${mainUrl}${clientID}${urlPage}`;
+    //if we have something in search input we should use search fetch from another url
+    if (searchTerm) {
+      url = `${searchUrl}${clientID}${urlPage}${query}`
+    }
     try {
       const res = await fetch(url);
       const data = await res.json();
-      console.log(data);
       //we dont wanna just rewrite data, we need to expand items in our state
-      setPhotos(oldPhotos => {
-        return [...oldPhotos, ...data]
-      })
+      //if we have something in search input when we gotta get another response
+      //also if we are on page 1 we need to rewrite our items
+      if (searchTerm && page === 1) {
+        setPhotos(data.results);
+      }
+      else if (searchTerm) {
+        console.log(data);
+        //we will have our array in data.results
+        setPhotos(oldPhotos => {
+          return [...oldPhotos, ...data.results]
+        })
+      }
+      else {
+        setPhotos(oldPhotos => {
+          return [...oldPhotos, ...data]
+        })
+      }
       //setNewImages to false before loading !!!important
       setNewImages(false);
       setLoading(false)
@@ -62,7 +84,6 @@ function App() {
     const inner = window.innerHeight;
     const scrollY = window.scrollY;
     const documentHeight = document.body.scrollHeight;
-    console.log(inner, scrollY, documentHeight);
     //if height of window+scrollY is more then current page height, then we wanna fetch new page
     if (inner + scrollY >= documentHeight - 2) {
       setNewImages(true);
@@ -76,12 +97,27 @@ function App() {
       window.removeEventListener('scroll', scrollEvent)
     }
   }, [])
+
+  // *** SEARCH FUNCTIONALITY ***
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    //dont do anything if user not typed anything in input
+    if (!searchTerm) return
+    //if we are on page 1, fetch new photos
+    if (page === 1) {
+      fetchPhotos();
+    }
+    //and reset page to first by default
+    setPage(1);
+
+  }
   return (
     <main>
       <section className="search">
         <form action="" className="search-form">
-          <input placeholder="search" type="text" className="form-input" />
-          <button className="submit-btn" type="submit">
+          <input onChange={(e) => setSearchTerm(e.target.value)} value={searchTerm} placeholder="search" type="text" className="form-input" />
+          <button onClick={handleSubmit} className="submit-btn" type="submit">
             <FaSearch />
           </button>
         </form>
