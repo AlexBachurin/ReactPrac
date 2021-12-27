@@ -67,6 +67,7 @@ function App() {
   //useEffect to fetch on page change
   useEffect(() => {
     fetchPhotos();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page])
   //useEffect to track newImages value change and change page if all good
   useEffect(() => {
@@ -78,6 +79,7 @@ function App() {
     setPage(oldPage => {
       return oldPage + 1;
     })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [newImages])
   const scrollEvent = () => {
     //get height of user window, how much we scrolled on page and current height of page
