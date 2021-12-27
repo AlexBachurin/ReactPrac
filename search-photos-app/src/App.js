@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { FaSearch } from 'react-icons/fa'
+import Photo from "./components/Photo";
 
 const clientID = `?client_id=${process.env.REACT_APP_ACCESS_KEY}`
 const mainUrl = `https://api.unsplash.com/photos/`
@@ -12,9 +13,17 @@ function App() {
 
   const url = `${mainUrl}${clientID}`
   const fetchPhotos = async () => {
-    const res = await fetch(url);
-    const data = await res.json();
-    console.log(data);
+    setLoading(true)
+    try {
+      const res = await fetch(url);
+      const data = await res.json();
+      console.log(data);
+      setPhotos(data)
+    } catch (error) {
+      console.log(error);
+      setLoading(false)
+    }
+    setLoading(false);
   }
 
   useEffect(() => {
@@ -32,7 +41,15 @@ function App() {
         </form>
       </section>
       <section className="photos">
-
+        {loading ? <h2 className="loading">Loading...</h2> :
+          <div className="photos-center">
+            {photos.map(item => {
+              return (
+                <Photo key={item.id} {...item} />
+              )
+            })}
+          </div>
+        }
       </section>
     </main>
   );
