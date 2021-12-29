@@ -1,11 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
-
+import React, { useState, useEffect } from "react";
+import data from './data'
+import Article from "./components/Article";
 function App() {
   return (
-    <div className="App">
-      <h2>dark mode app</h2>
-    </div>
+    <main>
+      <nav>
+        <div className="nav-center">
+          <h1>overreacted</h1>
+          <button className="btn">toggle</button>
+        </div>
+      </nav>
+      <section className="articles">
+        {data.map(item => {
+          return (
+            <Article />
+          )
+        })}
+      </section>
+    </main>
   );
 }
 
