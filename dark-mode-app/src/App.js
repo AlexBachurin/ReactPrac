@@ -13,7 +13,7 @@ function App() {
       <section className="articles">
         {data.map(item => {
           return (
-            <Article />
+            <Article key={item.id} {...item} />
           )
         })}
       </section>

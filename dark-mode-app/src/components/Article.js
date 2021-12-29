@@ -1,14 +1,14 @@
 import React from 'react'
-
-const Article = () => {
+import moment from 'moment'
+const Article = ({ title, date, length, snippet }) => {
     return (
         <article className='post'>
-            <h2>title</h2>
+            <h2>{title}</h2>
             <div className="post-info">
-                <span>date</span>
-                <span>length read</span>
+                <span>{moment(date).format('dddd Do, YYYY')}</span>
+                <span>{length} min read</span>
             </div>
-            <p>text</p>
+            <p>{snippet}</p>
         </article>
     )
 }
