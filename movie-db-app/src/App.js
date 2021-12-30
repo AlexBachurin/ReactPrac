@@ -1,10 +1,20 @@
-
+import React from "react";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route
+} from "react-router-dom";
+import Home from "./Pages/Home";
+import SingleMovie from "./Pages/SingleMovie";
 
 function App() {
   return (
-    <div className="App">
-      app
-    </div>
+    <Router>
+      <Routes>
+        <Route path='/' element={<Home />}></Route>
+        <Route path='/movie/:id' element={<SingleMovie />}></Route>
+      </Routes>
+    </Router>
   );
 }
 

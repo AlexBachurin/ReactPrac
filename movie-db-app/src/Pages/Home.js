@@ -1,10 +1,13 @@
 import React from 'react'
+import Form from '../components/Form'
+import Movies from '../components/Movies'
 
 const Home = () => {
     return (
-        <div>
-            home page
-        </div>
+        <main>
+            <Form />
+            <Movies />
+        </main>
     )
 }
 
