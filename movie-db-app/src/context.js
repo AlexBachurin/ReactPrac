@@ -11,9 +11,12 @@ const AppProvider = ({ children }) => {
     const [error, setError] = useState({ msg: '', type: '' });
 
 
-    const url = `${API_KEY}&s=${searchTerm}`;
 
+
+
+    // *** FETCH MOVIES ***
     const fetchMovies = async () => {
+        const url = `${API_KEY}&s=${searchTerm}`;
         setLoading(true);
         try {
             const res = await fetch(url);
@@ -32,8 +35,15 @@ const AppProvider = ({ children }) => {
         fetchMovies();
 
     }, [])
+
+    // *** HANDLE INPUT ***
+    const handleChange = (e) => {
+        setSearchTerm(e.target.value)
+    }
     return <AppContext.Provider value={{
         movies,
+        searchTerm,
+        handleChange
     }}>
         {children}
     </AppContext.Provider>
