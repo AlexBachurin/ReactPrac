@@ -7,7 +7,7 @@ const AppContext = React.createContext();
 const AppProvider = ({ children }) => {
     const [loading, setLoading] = useState(false);
     const [movies, setMovies] = useState([]);
-    const [searchTerm, setSearchTerm] = useState('rs');
+    const [searchTerm, setSearchTerm] = useState('avengers');
     const [error, setError] = useState({ msg: '', status: false });
 
 

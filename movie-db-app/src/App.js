@@ -5,7 +5,7 @@ import {
   Route
 } from "react-router-dom";
 import Home from "./Pages/Home";
-import SingleMovie from "./Pages/SingleMovie";
+import SingleMovie from "./Pages/SingleMoviePage";
 
 function App() {
   return (
