@@ -1,10 +1,16 @@
 import React from 'react'
-
-const SingleMovie = () => {
+import { Link } from 'react-router-dom'
+const SingleMovie = ({ Title: title, Year: year, Poster: image, imdbID: id }) => {
     return (
-        <div>
-            single movie component
-        </div>
+        <Link className='movie' to={`movie/${id}`}>
+            <article>
+                <img src={image} alt={title} />
+                <div className="movie-info">
+                    <h4 className='title'>{title}</h4>
+                    <p>{year}</p>
+                </div>
+            </article>
+        </Link>
     )
 }
 
