@@ -96,6 +96,7 @@ p {
   margin-bottom: 1.25rem;
   color: var(--clr-grey-3);
 }
+
 @media screen and (min-width: 800px) {
   h1 {
     font-size: 3rem;
@@ -120,6 +121,40 @@ p {
   }
 }
 /*  global classes */
+
+/* LOADING */
+.lds-dual-ring {
+  display: inline-block;
+  width: 80px;
+  height: 80px;
+}
+.lds-dual-ring:after {
+  content: " ";
+  display: block;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border-radius: 50%;
+  border: 6px solid #000;
+  border-color: #000 transparent #000 transparent;
+  animation: lds-dual-ring 1.2s linear infinite;
+}
+@keyframes lds-dual-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.loading-section {
+  width: 90vw;
+  margin: 0 auto;
+  max-width: var(--max-width);
+  display: grid;
+  place-items: center;
+  padding-top: 40px;
+}
 
 /* section */
 .section {

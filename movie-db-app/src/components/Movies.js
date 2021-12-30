@@ -1,9 +1,13 @@
 import React from 'react'
 import { useGlobalContext } from '../context'
-import { Link } from 'react-router-dom';
+import Loading from './Loading';
 import SingleMovie from './SingleMovie';
 const Movies = () => {
-    const { movies } = useGlobalContext();
+    const { movies, loading, error } = useGlobalContext();
+    //if loading or error in response
+    if (loading || error.status === true) {
+        return <Loading />
+    }
     return (
         <section className='movies'>
             {movies.map(item => {
