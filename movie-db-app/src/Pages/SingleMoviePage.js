@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 import Loading from '../components/Loading';
 import { Link } from 'react-router-dom';
 const API_KEY = `http://www.omdbapi.com/?apikey=${process.env.REACT_APP_MOVIEDB_API_KEY}`;
+const defaultImg = `https://res.cloudinary.com/dljezd6qv/image/upload/v1632861499/No-Image-Placeholder.svg.png`;
 
 const SingleMovie = () => {
     const { id } = useParams();
@@ -39,7 +40,8 @@ const SingleMovie = () => {
     }
     return (
         <section className='single-movie'>
-            <img src={movie.image} alt={movie.title} />
+            {/* set default image if movie db does not have one */}
+            <img src={movie.image === 'N/A' ? defaultImg : movie.image} alt={movie.title} />
             <div className="single-movie-info">
                 <h2>{movie.title}</h2>
                 <p>{movie.descr}</p>
